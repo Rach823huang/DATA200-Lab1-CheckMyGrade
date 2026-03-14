@@ -1,6 +1,7 @@
 from student import Student
 from course import Course
 from professor import Professor
+from login_user import LoginUser
 
 
 def main():
@@ -24,7 +25,10 @@ def main():
         print("16. Display All Professors")
         print("17. Delete Professor")
         print("18. Update Professor")
-        print("19. Exit")
+        print("19. Add Login User")
+        print("20. Display All Login Users")
+        print("21. Login")
+        print("22. Exit")
 
         choice = input("Enter your choice: ")
 
@@ -93,6 +97,15 @@ def main():
             Professor.update_professor(professor_id)
 
         elif choice == "19":
+            LoginUser.add_new_login_user()
+
+        elif choice == "20":
+            LoginUser.display_all_login_users()
+
+        elif choice == "21":
+            LoginUser.login()
+
+        elif choice == "22":
             print("Exiting program.")
             break
 
