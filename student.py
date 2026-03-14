@@ -1,6 +1,6 @@
-import csv
 from file_manager import read_csv_file, append_csv_file, write_csv_file
-
+import time
+import statistics
 
 class Student:
     def __init__(self, email_address, first_name, last_name, course_id, grade, marks):
@@ -107,3 +107,102 @@ class Student:
             print("Student updated successfully.")
         else:
             print("Student not found.")
+
+    @staticmethod
+    def search_student_by_email(email_to_search):
+        students = read_csv_file("student.csv")
+
+        start_time = time.time()
+
+        found = False
+        for row in students:
+            if row[0] == email_to_search:
+                found = True
+                print("\nStudent Found:")
+                print(row)
+                break
+
+        end_time = time.time()
+        elapsed_time = end_time - start_time
+
+        if not found:
+            print("Student not found.")
+
+        print(f"Search time: {elapsed_time:.8f} seconds")
+
+    @staticmethod
+    def sort_students_by_marks():
+        students = read_csv_file("student.csv")
+
+        if not students:
+            print("No student records found.")
+            return
+
+        sorted_students = sorted(students, key=lambda row: float(row[5]))
+
+        print("\nStudents Sorted by Marks (Ascending):")
+        for row in sorted_students:
+            print(row)
+
+    @staticmethod
+    def sort_students_by_first_name():
+        students = read_csv_file("student.csv")
+
+        if not students:
+            print("No student records found.")
+            return
+
+        sorted_students = sorted(students, key=lambda row: row[1].lower())
+
+        print("\nStudents Sorted by First Name (A-Z):")
+        for row in sorted_students:
+            print(row)
+
+    @staticmethod
+    def calculate_average_marks_by_course(course_id):
+        students = read_csv_file("student.csv")
+
+        marks_list = []
+        for row in students:
+            if row[3] == course_id:
+                marks_list.append(float(row[5]))
+
+        if not marks_list:
+            print("No student records found for this course.")
+            return
+
+        average_marks = sum(marks_list) / len(marks_list)
+        print(f"Average marks for course {course_id}: {average_marks:.2f}")
+
+    @staticmethod
+    def calculate_median_marks_by_course(course_id):
+        students = read_csv_file("student.csv")
+
+        marks_list = []
+        for row in students:
+            if row[3] == course_id:
+                marks_list.append(float(row[5]))
+
+        if not marks_list:
+            print("No student records found for this course.")
+            return
+
+        median_marks = statistics.median(marks_list)
+        print(f"Median marks for course {course_id}: {median_marks:.2f}")
+
+    @staticmethod
+    def generate_course_report(course_id):
+        students = read_csv_file("student.csv")
+
+        course_students = []
+        for row in students:
+            if row[3] == course_id:
+                course_students.append(row)
+
+        if not course_students:
+            print("No student records found for this course.")
+            return
+
+        print(f"\nCourse Report for {course_id}:")
+        for row in course_students:
+            print(row)

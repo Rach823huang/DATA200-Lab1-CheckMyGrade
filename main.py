@@ -13,15 +13,18 @@ def main():
         print("5. Search Student by Email")
         print("6. Sort Students by Marks")
         print("7. Sort Students by First Name")
-        print("8. Add Course")
-        print("9. Display All Courses")
-        print("10. Delete Course")
-        print("11. Update Course")
-        print("12. Add Professor")
-        print("13. Display All Professors")
-        print("14. Delete Professor")
-        print("15. Update Professor")
-        print("16. Exit")
+        print("8. Average Marks by Course")
+        print("9. Median Marks by Course")
+        print("10. Generate Course Report")
+        print("11. Add Course")
+        print("12. Display All Courses")
+        print("13. Delete Course")
+        print("14. Update Course")
+        print("15. Add Professor")
+        print("16. Display All Professors")
+        print("17. Delete Professor")
+        print("18. Update Professor")
+        print("19. Exit")
 
         choice = input("Enter your choice: ")
 
@@ -50,34 +53,46 @@ def main():
             Student.sort_students_by_first_name()
 
         elif choice == "8":
-            Course.add_new_course()
+            course_id = input("Enter course ID: ")
+            Student.calculate_average_marks_by_course(course_id)
 
         elif choice == "9":
-            Course.display_all_courses()
+            course_id = input("Enter course ID: ")
+            Student.calculate_median_marks_by_course(course_id)
 
         elif choice == "10":
+            course_id = input("Enter course ID: ")
+            Student.generate_course_report(course_id)
+
+        elif choice == "11":
+            Course.add_new_course()
+
+        elif choice == "12":
+            Course.display_all_courses()
+
+        elif choice == "13":
             course_id = input("Enter the course ID to delete: ")
             Course.delete_course(course_id)
 
-        elif choice == "11":
+        elif choice == "14":
             course_id = input("Enter the course ID to update: ")
             Course.update_course(course_id)
 
-        elif choice == "12":
+        elif choice == "15":
             Professor.add_new_professor()
 
-        elif choice == "13":
+        elif choice == "16":
             Professor.display_all_professors()
 
-        elif choice == "14":
+        elif choice == "17":
             professor_id = input("Enter the professor ID to delete: ")
             Professor.delete_professor(professor_id)
 
-        elif choice == "15":
+        elif choice == "18":
             professor_id = input("Enter the professor ID to update: ")
             Professor.update_professor(professor_id)
 
-        elif choice == "16":
+        elif choice == "19":
             print("Exiting program.")
             break
 
