@@ -206,3 +206,31 @@ class Student:
         print(f"\nCourse Report for {course_id}:")
         for row in course_students:
             print(row)
+
+    @staticmethod
+    def sort_students_by_marks_descending():
+        students = read_csv_file("student.csv")
+
+        if not students:
+            print("No student records found.")
+            return
+
+        sorted_students = sorted(students, key=lambda row: float(row[5]), reverse=True)
+
+        print("\nStudents Sorted by Marks (Descending):")
+        for row in sorted_students:
+            print(row)
+
+    @staticmethod
+    def sort_students_by_email():
+        students = read_csv_file("student.csv")
+
+        if not students:
+            print("No student records found.")
+            return
+
+        sorted_students = sorted(students, key=lambda row: row[0].lower())
+
+        print("\nStudents Sorted by Email (A-Z):")
+        for row in sorted_students:
+            print(row)
